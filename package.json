@@ -1,0 +1,25 @@
+{
+  "name": "EPC-QR-Code-Generator",
+  "version": "1.0.0",
+  "description": "An EPC QR-Code Generator completely running in the browser",
+  "main": "webapp/index.html",
+  "scripts": {
+    "build": "parcel build webapp/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "epc",
+    "qr-code"
+  ],
+  "author": "Adrian Sieber",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "common-tags": "^1.8.0",
+    "express": "^4.17.1",
+    "qrcode": "^1.4.4"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}

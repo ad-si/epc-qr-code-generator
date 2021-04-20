@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>EPC QR-Code Generator</title>
+
+  <link rel="stylesheet" href="./main.css">
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>EPC QR-Code Generator</h1>
+    </header>
+
+    <main>
+      <form>
+      <label>
+        Name:
+        <input name="name" type="text" placeholder="John Smith" required>
+      </label>
+      <label>
+        IBAN:
+        <input
+          name="iban"
+          type="text"
+          minlength="22"
+          maxlength="28"
+          placeholder="DE01234567890123456789"
+          required
+        />
+      </label>
+      <label>
+        Amount in €:
+        <input 
+          name="amount" 
+          type="number"
+          min="0"
+          max="10000"
+          placeholder="10"
+          step="0.01"
+          required
+        />
+      </label>
+      <label>
+        Message:
+        <input 
+          name="message" 
+          type="text"
+          placeholder="Salary"
+          maxlength="140"
+          required
+        />
+      </label>
+      <button type="submit">Generate QR-Code</button>
+      </form>
+    </main>
+
+    <canvas id="canvas"></canvas>
+  </div>
+</body>
+</html>
