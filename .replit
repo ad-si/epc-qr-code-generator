@@ -1,1 +1,1 @@
-run = "npx parcel serve --host=0.0.0.0 webapp/index.html"
+run = "npm run build && npm start"
