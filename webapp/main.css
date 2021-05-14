@@ -8,6 +8,15 @@ body {
   line-height: 1.5em;
 }
 
+main, header {
+  margin: 0 auto;
+  width: 30em;
+}
+
+hr {
+  margin: 1em 0;
+}
+
 h1 {
   font-style: italic;
   color: #373fff;
@@ -20,7 +29,6 @@ form {
   display: grid;
   grid-gap: 1em;
   padding: 1em;
-  max-width: 40ch;
 }
 
 input {

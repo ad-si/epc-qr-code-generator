@@ -15,53 +15,63 @@
       <h1>EPC QR-Code Generator</h1>
     </header>
 
-    <label for="select-person">Select Person:</label>
-    <select name="select-person" id="select-person"></select>
-
     <main>
-      <form>
-      <label>
-        Name:
-        <input name="name" type="text" placeholder="John Smith" required>
-      </label>
-      <label>
-        IBAN:
-        <input
-          name="iban"
-          type="text"
-          minlength="22"
-          maxlength="28"
-          placeholder="DE01234567890123456789"
-          required
-        />
-      </label>
-      <label>
-        Amount in €:
-        <input 
-          name="amount" 
-          type="number"
-          min="0"
-          max="10000"
-          placeholder="10"
-          step="0.01"
-          required
-        />
-      </label>
-      <label>
-        Message:
-        <input 
-          name="message" 
-          type="text"
-          placeholder="Salary"
-          maxlength="140"
-          required
-        />
-      </label>
-      <button type="submit">Generate QR-Code</button>
+      <form id="load-data">
+        <label for="password">Password:</label>
+        <input type="password" name="password"/>
+        <input type="submit" value="Load Persons"/>
       </form>
-    </main>
 
-    <canvas id="canvas"></canvas>
+      <hr/>
+
+      <label for="select-person">Select Person:</label>
+      <select name="select-person" id="select-person"></select>
+
+      <hr/>
+
+      <form id="transfer-details">
+        <label>
+          Name:
+          <input name="name" type="text" placeholder="John Smith" required>
+        </label>
+        <label>
+          IBAN:
+          <input
+            name="iban"
+            type="text"
+            minlength="22"
+            maxlength="28"
+            placeholder="DE01234567890123456789"
+            required
+          />
+        </label>
+        <label>
+          Amount in €:
+          <input
+            name="amount"
+            type="number"
+            min="0"
+            max="10000"
+            placeholder="10"
+            step="0.01"
+            required
+          />
+        </label>
+        <label>
+          Message:
+          <input
+            name="message"
+            type="text"
+            placeholder="Salary"
+            maxlength="140"
+            required
+          />
+        </label>
+        <button type="submit">Generate QR-Code</button>
+      </form>
+
+      <canvas id="canvas"></canvas>
+    </main>
   </div>
 </body>
 </html>

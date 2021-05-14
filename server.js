@@ -4,53 +4,33 @@ const { stripIndent } = require('common-tags')
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
-const db = require('./db')
 
 const app = express()
+const port = 3000
+const persons = JSON.parse(process.env['persons'])
+const password = process.env['password']
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static('dist'))
 
-// app.get('/', (req, res) => {
-// 	res.sendFile(path.join(__dirname + '/index.html'))
-// })
+app.post('/api/persons', (req, res, next) => {
+  if (req.body.password && req.body.password === password) {
+    res.send(persons)
+  }
+  else {
+    next()
+  }
+})
 
-app.listen(3000, () => console.log('server started'))
+app.use((err, req, res, next) => {
+  res
+    .status(500)
+    .json({error: err.message})
+})
 
-// const persons = JSON.parse(process.env['persons'])
-
-// persons.forEach(person => {
-  
-// })
-
-
-// function displayQrCode () {
-//   const qrCodeText = getQrCodeText({
-//     name: data.name || data.firstname + ' ' + data.lastname,
-//     bic: data.bic,
-//     iban: data.iban,
-//     amount: data.amount,
-//     message: data.message,
-//   })
-
-//   console.log(request.headers)
-
-//   if (request.headers.accept.includes('image/png')) {
-//     response.setHeader('Content-Type', 'image/png')
-
-//     qrcode.toFileStream(
-//       response,
-//       qrCodeText,
-//       {
-//         errorCorrectionLevel: 'M',
-//         // version: 13, // Maximum allowed version (should be less normally)
-//       }
-//     )
-//   }
-//   else {
-//     response.end(qrCodeText)
-//     return
-//   }
-// }
+app.listen(
+  port,
+  () => console.info(`Server is listenting at http://localhost:${port}`)
+)

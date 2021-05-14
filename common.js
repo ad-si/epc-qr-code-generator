@@ -1,3 +1,5 @@
+import { stripIndent } from 'common-tags'
+
 export function getQrCodeText(data = {}) {
   if (!data.name) throw new Error('Name of receiver must be set')
 
