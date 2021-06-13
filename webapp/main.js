@@ -32,7 +32,7 @@ function displayQrCode() {
 
 const detailsForm = document.getElementById('transfer-details')
 
-function setFormData (person) {
+function setFormData(person) {
   Object.entries(person).forEach(([key, value]) => {
     detailsForm.elements[key].value = value
   })
@@ -43,12 +43,13 @@ const selectElement = document.getElementById('select-person')
 selectElement
   .addEventListener('change', event => {
     const optionEl = event.target.options[event.target.selectedIndex]
-    setFormData({name: optionEl.dataset.name, iban: optionEl.dataset.iban})
+    setFormData({ name: optionEl.dataset.name, iban: optionEl.dataset.iban })
   })
 
 
 const formLoadEl = document.getElementById('load-data')
 const formLoadData = new FormData(formLoadEl)
+const selectPersonWrapper = document.getElementById('select-person-wrapper')
 
 
 formLoadEl
@@ -58,30 +59,31 @@ formLoadEl
 
     fetch('/api/persons', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         password: formLoadEl?.password?.value,
       }),
     })
-    .then(data => {
-      if (data.status !== 200) {
-        throw new Error(data.statusText)
-      }
-      return data.json()
-    })
-    .then(persons => {
-      setFormData(persons[0])
-      persons.forEach(person => {
-        const optionEl = document.createElement('option')
-        optionEl.dataset.name = person.name
-        optionEl.dataset.iban = person.iban
-        optionEl.text = person.name
-        selectElement.appendChild(optionEl)
+      .then(data => {
+        if (data.status !== 200) {
+          throw new Error(data.statusText)
+        }
+        return data.json()
       })
-    })
-    .catch(error => {
-      window.alert(error)
-    })
+      .then(persons => {
+        selectPersonWrapper.style.display = 'block'
+        setFormData(persons[0])
+        persons.forEach(person => {
+          const optionEl = document.createElement('option')
+          optionEl.dataset.name = person.name
+          optionEl.dataset.iban = person.iban
+          optionEl.text = person.name
+          selectElement.appendChild(optionEl)
+        })
+      })
+      .catch(error => {
+        window.alert(error)
+      })
   })
 
 
