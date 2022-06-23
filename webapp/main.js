@@ -34,7 +34,9 @@ const detailsForm = document.getElementById('transfer-details')
 
 function setFormData(person) {
   Object.entries(person).forEach(([key, value]) => {
-    detailsForm.elements[key].value = value
+    if (detailsForm.elements[key]) {
+      detailsForm.elements[key].value = value
+    }
   })
 }
 

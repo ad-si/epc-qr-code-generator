@@ -17,7 +17,9 @@ app.use(express.static('dist'))
 
 app.post('/api/persons', (req, res, next) => {
   if (req.body.password && req.body.password === password) {
-    res.send(persons)
+    res.send(
+      persons.filter(person => person.isActive)
+    )
   }
   else {
     next()
