@@ -4,10 +4,14 @@ export function getQrCodeText(data = {}) {
   if (!data.name) throw new Error('Name of receiver must be set')
 
   if (!data.message) throw new Error('Message must be set')
-  if (data.message.length > 140) throw new Error('Message must not be longer than 140 characters')
+  if (data.message.length > 140) {
+    throw new Error('Message must not be longer than 140 characters')
+  }
 
   if (!data.iban) throw new Error('IBAN must be set')
-  if (data.iban.length !== 22) throw new Error('IBAN must be 22 characters long')
+  if (data.iban.length < 15 || data.iban.length > 34) {
+    throw new Error('IBAN must be between 15 and 34 characters long')
+  }
 
   if (data.amount <= 0) throw new Error('Amount must be a positive number')
 
