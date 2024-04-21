@@ -1,11 +1,10 @@
 {
-  "name": "EPC-QR-Code-Generator",
+  "name": "epc-qr-code-generator",
   "version": "1.0.0",
   "description": "An EPC QR-Code Generator completely running in the browser",
   "main": "webapp/index.html",
   "scripts": {
     "build": "parcel build webapp/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "keywords": [
