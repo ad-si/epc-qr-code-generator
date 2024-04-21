@@ -1,9 +1,5 @@
-const QRCode = require('qrcode')
-const { stripIndent } = require('common-tags')
-
 const express = require('express')
 const bodyParser = require('body-parser')
-const path = require('path')
 
 const app = express()
 const port = 3000
@@ -26,10 +22,10 @@ app.post('/api/persons', (req, res, next) => {
   }
 })
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res) => {
   res
     .status(500)
-    .json({error: err.message})
+    .json({ error: err.message })
 })
 
 app.listen(

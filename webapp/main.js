@@ -2,34 +2,6 @@ import QRCode from 'qrcode'
 import { getQrCodeText } from '../common.js'
 
 
-function displayQrCode() {
-  const qrCodeText = getQrCodeText({
-    name: data.name || data.firstname + ' ' + data.lastname,
-    bic: data.bic,
-    iban: data.iban.replace(/\s/g, ''),
-    amount: data.amount,
-    message: data.message,
-  })
-
-  if (request.headers.accept.includes('image/png')) {
-    response.setHeader('Content-Type', 'image/png')
-
-    qrcode.toFileStream(
-      response,
-      qrCodeText,
-      {
-        errorCorrectionLevel: 'M',
-        // version: 13, // Maximum allowed version (should be less normally)
-      }
-    )
-  }
-  else {
-    response.end(qrCodeText)
-    return
-  }
-}
-
-
 const detailsForm = document.getElementById('transfer-details')
 
 function setFormData(person) {
@@ -50,7 +22,6 @@ selectElement
 
 
 const formLoadEl = document.getElementById('load-data')
-const formLoadData = new FormData(formLoadEl)
 const selectPersonWrapper = document.getElementById('select-person-wrapper')
 
 
